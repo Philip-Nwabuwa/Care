@@ -1,14 +1,12 @@
-import AddHospitals from "@/components/AddHospitals";
 import EditHospital from "@/components/EditHospital";
 import ExportDataButton from "@/components/ExportData";
-import Realtime from "@/components/Realtime";
+import Hospitals from "@/components/Hospitals";
 
 export default function Home() {
   return (
     <div>
       <main>
-        <Realtime />
-        <AddHospitals />
+        <Hospitals />
         <EditHospital />
         <ExportDataButton />
       </main>

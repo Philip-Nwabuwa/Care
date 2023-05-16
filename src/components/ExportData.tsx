@@ -1,14 +1,13 @@
 "use client";
 
-import { collection, getDocs } from "firebase/firestore";
+import { getDocs } from "firebase/firestore";
 import { saveAs } from "file-saver";
-import { db } from "@/lib/firebase";
 import * as XLSX from "xlsx";
+import { hospitalsCollectionRef } from "@/lib/firestore.collection";
 
 const ExportDataButton = () => {
   const handleExportData = async () => {
-    const dbInstance = db;
-    const data = await getDocs(collection(dbInstance, "hospitals"));
+    const data = await getDocs(hospitalsCollectionRef);
 
     const headers = ["Name", "City", "State", "Country"];
     const rows = data.docs.map((doc) => {
@@ -27,7 +26,7 @@ const ExportDataButton = () => {
     const blob = new Blob([excelBlob], {
       type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
     });
-    saveAs(blob, "myData.xlsx");
+    saveAs(blob, "CareFinder.xlsx");
   };
 
   return <button onClick={handleExportData}>Export Data</button>;
